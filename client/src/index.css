@@ -1,1 +1,10 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
+#root {
+  height: 100%
+}
