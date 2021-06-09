@@ -1,11 +1,11 @@
 import './Page.css';
-import List from './List';
+import ListForm from './ListForm';
 
 const Page = () => {
   return (
     <div className='flex-container'>
       <div className='content'>
-        <List />
+        <ListForm />
       </div>
     </div>
   );

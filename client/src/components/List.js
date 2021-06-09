@@ -1,29 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ListItem from './ListItem';
 
 import './List.css';
 
-const List = () => {
-  const [shoppingList, setShoppingList] = useState([
-    {
-      id: 0,
-      name: 'cheese',
-    },
-    {
-      id: 1,
-      name: 'bread',
-    },
-    {
-      id: 2,
-      name: 'butter',
-    },
-    {
-      id: 3,
-      name: 'ham',
-    },
-  ]);
-
+const List = (props) => {
+  const [shoppingList, setShoppingList] = useState(props.list);
   let listItems = shoppingList.map((item) => <ListItem item={item} />);
+
+  useEffect(() => {
+    setShoppingList(props.list);
+    listItems = shoppingList.map((item) => <ListItem item={item} />);
+  }, [props]);
 
   return <div className='shopping-list'>{listItems}</div>;
 };
