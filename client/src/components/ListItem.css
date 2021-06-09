@@ -6,3 +6,8 @@
 .shopping-list-item {
   border: 1px solid red;
 }
+
+.delete-icon {
+  float: right;
+  margin: 1%;
+}
