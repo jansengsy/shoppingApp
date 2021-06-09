@@ -1,9 +1,12 @@
 import Header from './components/Header';
+import Page from './components/Page';
+import './App.css';
+
 function App() {
   return (
-    <div className='App'>
+    <div className='app'>
       <Header />
-      <p>Hello from React!</p>
+      <Page></Page>
     </div>
   );
 }
