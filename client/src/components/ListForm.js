@@ -1,12 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import List from './List';
 
 const ListForm = () => {
   const [shoppingList, setShoppingList] = useState([]);
 
-  const addNewItem = (e) => {
+  useEffect(() => {
+    getListItems();
+  }, []);
+
+  const getListItems = async () => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.get('/api/shoppingItem', config);
+      setShoppingList(res.data);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const addNewItem = async (e) => {
     e.preventDefault();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
     const itemName = document.getElementById('newItem').value;
+
+    try {
+      const res = await axios.post('/api/shoppingItem', { name: itemName });
+      alert(JSON.stringify(res.data.msg));
+      getListItems();
+    } catch (err) {
+      alert(err);
+    }
     setShoppingList([
       ...shoppingList,
       { id: shoppingList.length, name: itemName },
@@ -14,9 +48,19 @@ const ListForm = () => {
     clearInput();
   };
 
-  const deleteItem = (id) => {
-    const newList = shoppingList.filter((item) => item.id !== id);
-    setShoppingList(newList);
+  const deleteItem = async (id) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.delete(`/api/shoppingItem/${id}`, config);
+      alert(JSON.stringify(res.data.msg));
+      getListItems();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const clearInput = () => {

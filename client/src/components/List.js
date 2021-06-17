@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ListItem from './ListItem';
-import { uid } from 'uid';
 
 import './List.css';
 
@@ -13,7 +12,7 @@ const List = (props) => {
     setShoppingList(list);
     setListItems(
       shoppingList.map((item) => (
-        <ListItem key={uid()} item={item} deleteItem={deleteItem} />
+        <ListItem key={item._id} item={item} deleteItem={deleteItem} />
       ))
     );
   }, [list, deleteItem, shoppingList]);

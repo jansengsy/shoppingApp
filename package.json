@@ -4,8 +4,12 @@
   "description": "An app to help you find where to buy items on your shopping list",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "dev": "concurrently \"cd client && npm run  start\" \"cd server && nodemon ./server.js\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.7"
+  }
 }
