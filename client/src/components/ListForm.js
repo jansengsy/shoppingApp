@@ -24,9 +24,23 @@ const ListForm = () => {
     }
   };
 
-  const addNewItem = (e) => {
+  const addNewItem = async (e) => {
     e.preventDefault();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
     const itemName = document.getElementById('newItem').value;
+
+    try {
+      const res = await axios.post('/api/shoppingItem', { name: itemName });
+      alert(JSON.stringify(res.data.msg));
+      getListItems();
+    } catch (err) {
+      alert(err);
+    }
     setShoppingList([
       ...shoppingList,
       { id: shoppingList.length, name: itemName },
@@ -35,14 +49,18 @@ const ListForm = () => {
   };
 
   const deleteItem = async (id) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    const res = await axios.delete(`/api/shoppingItem/${id}`, config);
-    alert(JSON.stringify(res.data.msg));
-    getListItems();
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.delete(`/api/shoppingItem/${id}`, config);
+      alert(JSON.stringify(res.data.msg));
+      getListItems();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const clearInput = () => {

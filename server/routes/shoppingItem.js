@@ -23,16 +23,15 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { id, name } = req.body;
+    const { name } = req.body;
 
     try {
       const newItem = new ShoppingListItem({
-        id,
         name,
       });
 
       const item = newItem.save();
-      res.json(item);
+      res.json({ msg: 'Item added!' });
     } catch (err) {
       console.log(err.message);
       return res.status(500).json({ message: 'Server error' });

@@ -4,7 +4,6 @@ const ListItem = ({ item, deleteItem }) => {
   return (
     <div className='shopping-list-item'>
       <input type='radio' />
-      <div className='item-part'>{item._id}</div>
       <div className='item-part'>{item.name}</div>
       <span value={item.id}>
         <i
