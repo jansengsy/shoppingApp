@@ -33,3 +33,4 @@ app.listen(port, () => {
 });
 
 app.use('/api/shoppingItem', require('./routes/shoppingItem'));
+app.use('/api/users', require('./routes/users'));

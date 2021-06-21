@@ -68,12 +68,16 @@ const ListForm = () => {
   };
 
   return (
-    <form onSubmit={addNewItem}>
-      <h3>Your shopping list:</h3>
-      <List list={shoppingList} deleteItem={deleteItem} />
-      <input id='newItem' type='text' placeholder='Add new item...'></input>
-      <button>Add new item</button>
-    </form>
+    <div className='flex-container'>
+      <div className='content'>
+        <form onSubmit={addNewItem}>
+          <h3>Your shopping list:</h3>
+          <List list={shoppingList} deleteItem={deleteItem} />
+          <input id='newItem' type='text' placeholder='Add new item...'></input>
+          <button>Add new item</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
